@@ -7,7 +7,7 @@ class LaunchAPI extends RESTDataSource {
   }
 
   async getAllQuestions() {
-    const response = await this.get('questions?tag=JavaScript&sort=activity&site=stackoverflow');
+    const response = await this.get('questions?tag=javascript&sort=activity&site=stackoverflow');
     const {items} = response;
     return items;
   }
