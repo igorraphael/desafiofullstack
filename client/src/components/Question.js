@@ -4,8 +4,8 @@ import Spinner from 'react-spinners/PulseLoader';
 import {Query} from 'react-apollo';
 
 const queryTeste = gql `
-query Default($tag: String, $limit: String, $score: String, $sort: String){
-  questionsByTag(tag: $tag, limit: $limit, score: $score, sort: $sort){
+query getAllQuestions($tag: String, $limit: String, $score: String, $sort: String){
+  allQuestions(tag: $tag, limit: $limit, score: $score, sort: $sort){
     title
     score
     link
@@ -84,7 +84,7 @@ export default class Question extends Component{
                     return(
                       <div>
                         <p className="title-result">Resultados encontrados</p>
-                        {data.questionsByTag.map((question, index) => (
+                        {data.allQuestions.map((question, index) => (
                           <a href={question.link} target="_blank" rel="noopener noreferrer" className="anchor" key={index.toString()}>
                             <div className="container-result flex">
                               <div className="viewsInfo">

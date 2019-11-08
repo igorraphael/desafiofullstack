@@ -1,35 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import { ApolloProvider } from 'react-apollo';
 import apolloClient from './service/apollo';
-
-import Teste from './components/QuestionList';
+import Question from './components/Question';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tag: '',
-      limit: '',
-      score: '',
-      sort:'',
+      limit: '10',
+      score: '0',
+      sort: 'asc',
       submitted: false,
     };
   }
 
+  //changes state submitted false.
+  handleSubmitted = () => {
+    this.setState({submitted: false} );
+  }
+
+  //handle generict for inputs
   handleChange = (event) =>  {
     let changeState = {};
     changeState[event.target.name] = event.target.value;
-    this.setState(changeState);
+    this.setState(changeState,() => this.handleSubmitted());
   }
-
+  
+  //submit form
   submitForm = (event) => {
     event.preventDefault();
-    //console.log(this.state);
-    this.setState({ submitted: true}, () => {
-      //console.log(this.state.submitted)
-    });
+    this.setState({ submitted: true});
   }
 
   render(){
@@ -48,21 +50,22 @@ export default class App extends Component {
                 </div>
                 <div className="flex-item-1">
                     <label className="label">Limit</label>
-                    <input type="text" value={this.state.limit} onChange={this.handleChange.bind(this)} name="limit" />
+                    <input type="number" value={this.state.limit} pattern="[0-9]*" onChange={this.handleChange.bind(this)} name="limit" />
+                    <p style={{fontSize: 10}}>* número de resultados</p>
                 </div>
                 <div className="flex-item-1">
                   <label className="label">Score</label>
-                  <input type="text" value={this.state.score} onChange={this.handleChange.bind(this)} name="score"/>
+                  <input type="number" value={this.state.score} pattern="[0-9]*" onChange={this.handleChange.bind(this)} name="score"/>
                 </div>
                 <div className="flex-item-1">
                   <label className="label">Sort</label>
                   <input type="text" value={this.state.sort} onChange={this.handleChange.bind(this)} name="sort"/>
+                  <p style={{fontSize: 10}}>* desc ou asc</p>
                 </div>
               </div>
               <div className="flex rowReverse">
                 <button className="btn">Buscar</button>
               </div>  
-              
             </form>
 
           </div>
@@ -71,7 +74,7 @@ export default class App extends Component {
           <br/>
          
           <div className="result">
-            {this.state.submitted && <Teste/> }
+            {this.state.submitted && <Question client={this.state}/> }
           </div>
 
         </div>
