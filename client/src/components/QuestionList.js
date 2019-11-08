@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import Spinner from 'react-spinners/PulseLoader';
 
 class QuestionList extends Component {
   renderQuestionsList = () => (
@@ -13,7 +14,7 @@ class QuestionList extends Component {
               <div className="viewsInfo">
                   <span>{question.score}</span>
                   <span className="span-info" style={{marginBottom: 25}}>votes</span>
-                  <span>0</span>
+                  <span>{question.answer_count}</span>
                   <span className="span-info">answers</span>
                 <span className="span-views"> {question.view_count} views</span>
               </div>
@@ -40,6 +41,19 @@ class QuestionList extends Component {
     </div>
   );
 
+  renderSpinner = () => {
+    return(
+      <div className="spinner">
+          <Spinner 
+            sizeUnit={"px"}
+            size={20}
+            color={'#09d3ac'}
+            loading={true}
+          />
+      </div>
+    );
+  }
+
 
   render() {
     const { data } = this.props;
@@ -47,7 +61,7 @@ class QuestionList extends Component {
     return (
       <Fragment>
           { data.loading 
-            ? <p>Carregando...</p>
+            ? this.renderSpinner()
             : this.renderQuestionsList()}
       </Fragment>
     );
@@ -66,6 +80,7 @@ query {
         display_name 
         profile_image
         }
+        answer_count
     }
 }    
 `;

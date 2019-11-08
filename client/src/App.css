@@ -86,6 +86,7 @@ input{
   margin: 5px;
 }
 .viewsInfo{
+  background: #ebebeb;
   color: grey;
   text-align: center;
   display: flex;
@@ -128,4 +129,8 @@ div.user-info > p{
 
 .anchor{
   text-decoration: none;
+}
+.spinner{
+  margin: 0 auto;
+  max-width: 80px;
 }
