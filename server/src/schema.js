@@ -2,8 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type Query {
-        questionsDefault: [Question]!
-        questionsByTag(tag: String): [Question]!
+        allQuestions(tag: String, limit: String, score: String, sort: String): [Question]!
     }
 
     type Question {
