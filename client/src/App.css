@@ -82,6 +82,7 @@ input{
 }
 
 .view {
+  min-width: 700px;
   margin: 5px;
 }
 .viewsInfo{
@@ -117,8 +118,12 @@ input{
 }
 
 .user-info{
+  max-width: 70px;
   flex-direction: row;
   margin-top: 20px;
+}
+div.user-info > p{
+  white-space: normal;
 }
 
 .anchor{

@@ -26,10 +26,10 @@ export default class App extends Component {
 
   submitForm = (event) => {
     event.preventDefault();
-    console.log(this.state);
-    // this.setState({ submitted: true}, () => {
-    //   console.log(this.state.submitted)
-    // });
+    //console.log(this.state);
+    this.setState({ submitted: true}, () => {
+      //console.log(this.state.submitted)
+    });
   }
 
   render(){
