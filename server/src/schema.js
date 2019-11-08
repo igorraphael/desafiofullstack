@@ -2,7 +2,8 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type Query {
-        questions: [Question]!
+        questionsDefault: [Question]!
+        questionsByTag(tag: String): [Question]!
     }
 
     type Question {
@@ -13,6 +14,7 @@ const typeDefs = gql`
         score: Int
         view_count: Int
         owner: User
+        answer_count: Int
     }
 
     type User {

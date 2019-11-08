@@ -1,6 +1,8 @@
 module.exports = {
     Query: {
-        questions: (_, __, { dataSources }) =>
-        dataSources.launchAPI.getAllQuestions(),
+        questionsDefault: (_, __, { dataSources }) =>
+        dataSources.launchAPI.getAllQuestionsJs(),
+        questionsByTag: (_, { tag }, { dataSources }) =>
+        dataSources.launchAPI.getAllQuestionsByTag(tag),
     }
   };
